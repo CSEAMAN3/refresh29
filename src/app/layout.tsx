@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import {Hanken_Grotesk} from "next/font/google"
 import {Sour_Gummy} from "next/font/google"
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const hankenGrotesk = Hanken_Grotesk({
   variable: "--font-hanken-grotesk",
@@ -34,7 +36,9 @@ export default function RootLayout({
       <body
         className={`${hankenGrotesk.variable} ${sourGummy.variable} antialiased`}
       >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
