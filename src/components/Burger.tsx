@@ -59,7 +59,11 @@ export default function Burger() {
                 const isActive = pathname === link.href
                 return (
                   <li key={link.href} className="mb-8">
-                    <Link href={link.href} className={`font-bold text-4xl ${isActive ? "text-primary-accent hover:text-primary-accent" : "text-off-white hover:text-primary-accent"} capitalize`}>{link.title}</Link>
+                    <Link 
+                      href={link.href} 
+                      className={`font-bold text-4xl ${isActive ? "text-primary-accent hover:text-primary-accent" : "text-off-white hover:text-primary-accent"} capitalize`}
+                      onClick={() => setToggleNav(!toggleNav)}  
+                    >{link.title}</Link>
                   </li>
                 )
               })}
