@@ -1,15 +1,72 @@
 'use client'
 
+import { headerNav } from "@/lib/navigations"
 import {motion} from "framer-motion"
-import { useState } from "react"
+import Link from "next/link"
+import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 
 
 export default function Burger() {
 
   const [toggleNav, setToggleNav] = useState(false)
+  const [navWidth, setNavWidth] = useState("100vw")
+
+  const pathname = usePathname()
+
+  useEffect(() => {
+   const updateNavWidth = () => {
+     if(window.innerWidth < 640){
+      setNavWidth("100vw")
+    } else if(window.innerWidth < 900){
+      setNavWidth("60vw")
+    } else if(window.innerWidth < 1100){
+      setNavWidth("50vw")
+    } else if(window.innerWidth < 1300){
+      setNavWidth("40vw")
+    } else {
+      setNavWidth("30vw")
+    }
+   }
+
+   updateNavWidth()
+
+   window.addEventListener("resize", updateNavWidth)
+   return () => window.removeEventListener("resize", updateNavWidth)
+  }, [])
 
   return (
     <div>
+      {/* navigation menu */}
+      <motion.div className="" animate={toggleNav ? "open" : "close"}>
+        <motion.div
+          className={`bg-pitch-mid h-screen fixed top-0 right-0 ${toggleNav ? "border-l-4" : "border-l-0"} border-grassroots overflow-y-scroll`}
+          style={{
+            width: "0vw"
+          }}
+          variants={{
+            open: {
+              width: navWidth
+            },
+            close: {
+              width: "0vw"
+            }
+          }}
+        >
+          <nav className="mt-32 px-8">
+            <ul>
+              {headerNav.map(link => {
+                const isActive = pathname === link.href
+                return (
+                  <li key={link.href} className="mb-8">
+                    <Link href={link.href} className={`font-bold text-4xl ${isActive ? "text-primary-accent hover:text-primary-accent" : "text-off-white hover:text-primary-accent"} capitalize`}>{link.title}</Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </nav>
+        </motion.div>
+      </motion.div>
       {/* burger bars */}
       <motion.div 
         className={`w-8 h-8 ${toggleNav ? "fixed" : "absolute"} top-7 right-8 cursor-pointer`} 

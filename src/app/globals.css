@@ -3,6 +3,15 @@
 :root {
   --primary: #373d12;
   --primary-accent: #dfef48;
+  --grassroots-mid: #becc3e;
+  --grassroots: #a0b234;
+  --pitch-light: #5c661e;
+  --pitch-mid: #444f16;
+  --off-white: #f8f9f3;
+  --nh-grey: #e5e2d9;
+  --bluey-black: #2a2d38;
+  --electric-orange: #e86f2f;
+  --electric-blue: #3a80f2;
 }
 
 @theme inline {
@@ -10,6 +19,16 @@
   --font-playful: var(--font-sourG-playful);
   --color-primary: var(--primary);
   --color-primary-accent: var(--primary-accent);
+  --color-grassroots-mid: var(--grassroots-mid);
+  --color-grassroots: var(--grassroots);
+  --color-pitch-light: var(--pitch-light);
+  --color-pitch-mid: var(--pitch-mid);
+  --color-off-white: var(--off-white);
+  --color-nh-grey: var(--nh-grey);
+  --color-bluey-black: var(--bluey-black);
+  --color-electric-orange: var(--electric-orange);
+  --color-electric-blue: var(--electric-blue);
+
 }
 
 /* @media (prefers-color-scheme: dark) {
