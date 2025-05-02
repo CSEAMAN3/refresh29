@@ -4,6 +4,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import BlogSlider from "@/components/BlogSlider";
+import ShareButton from "@/components/ShareButton";
 
 export async function generateMetadata(props : {params : Promise<{postId : string}>}) : Promise<Metadata>{
   try{
@@ -38,6 +40,7 @@ export default async function page(props : {params : Promise<{postId : string}>}
   const {postId} = params
 
   const blog = await getPostData(postId)
+  const blogs = await getSortedPostData()
 
   if(!blog) return notFound()
 
@@ -48,7 +51,7 @@ export default async function page(props : {params : Promise<{postId : string}>}
   return (
     <main className="p-8 bg-off-white min-h-screen text-primary">
       <div className="mx-auto max-w-[600px]">
-          <Link href="/blog" className="font-light hover:text-grassroots inline-block mb-4">&#8592; return to blog</Link>
+          <Link href="/blog" className="font-light  text-electric-orange hover:text-grassroots inline-block mb-4">&#8592; return to blog</Link>
           <h1 className="font-bold text-3xl">{title}</h1>
           <p className="font-light text-sm">Written by {author}</p>
           <p className="font-light text-sm mb-8">{formattedDate}</p>
@@ -60,7 +63,9 @@ export default async function page(props : {params : Promise<{postId : string}>}
             className="w-full h-[300px] object-cover mb-8"
           />
           <section dangerouslySetInnerHTML={{__html: contentHtml}} className="prose prose-sm" />
+          <ShareButton />
       </div>
+      <BlogSlider blogs={blogs} currentTitle={title} />
     </main>
   )
 }
