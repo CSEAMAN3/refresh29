@@ -62,7 +62,7 @@ export default async function page(props : {params : Promise<{postId : string}>}
             height={400}
             className="w-full h-[300px] object-cover mb-8"
           />
-          <section dangerouslySetInnerHTML={{__html: contentHtml}} className="prose prose-sm" />
+          <section dangerouslySetInnerHTML={{__html: contentHtml}} className="prose prose-sm text-primary" />
           <ShareButton />
       </div>
       <BlogSlider blogs={blogs} currentTitle={title} />
